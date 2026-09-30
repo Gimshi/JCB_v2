@@ -1,0 +1,102 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN_ACARA
+  BENDAHARA
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TransactionType {
+  IN
+  OUT
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  email                 String                 @unique
+  name                  String
+  passwordHash          String?
+  role                  Role                   @default(ADMIN_ACARA)
+  avatarUrl             String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  financialTransactions FinancialTransaction[]
+  auditLogs             AuditLog[]
+
+  @@map("users")
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  description String?     @db.Text
+  dateStart   DateTime
+  dateEnd     DateTime?
+  location    String
+  campus      String?     @default("Surabaya Main Campus")
+  category    String?     @default("Ibadah Raya")
+  bannerUrl   String?
+  status      EventStatus @default(PUBLISHED)
+  featured    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("events")
+}
+
+model FinancialAccount {
+  id           String                 @id @default(cuid())
+  name         String                 @unique // Kas Utama, Kas Diakonia, Kas Pembangunan
+  code         String                 @unique
+  balance      BigInt                 @default(0) // Financial Format: BigInt (Rupiah)
+  description  String?
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  transactions FinancialTransaction[]
+
+  @@map("financial_accounts")
+}
+
+model FinancialTransaction {
+  id              String           @id @default(cuid())
+  type            TransactionType
+  amount          BigInt           // Rupiah
+  category        String           // Kolekte, Persembahan Perpuluhan, Donasi, Operasional, dsb
+  description     String
+  proofUrl        String?
+  transactionDate DateTime         @default(now())
+  accountId       String
+  account         FinancialAccount @relation(fields: [accountId], references: [id])
+  createdById     String
+  createdBy       User             @relation(fields: [createdById], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@map("financial_transactions")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // CREATE_TRANSACTION, UPDATE_EVENT, dsb
+  details   String?  @db.Text
+  ipAddress String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}

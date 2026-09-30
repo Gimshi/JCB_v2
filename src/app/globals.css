@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000;
+  --color-primary-container: #1c1b1b;
+  --color-primary-fixed: #e5e2e1;
+  --color-primary-fixed-dim: #c8c6c5;
+  --color-secondary: #665d51;
+  --color-secondary-container: #ede1d1;
+  --color-secondary-fixed: #ede1d1;
+  --color-secondary-fixed-dim: #d1c5b6;
+  --color-surface: #faf9f6;
+  --color-surface-container-low: #f4f3f0;
+  --color-surface-container: #efeeeb;
+  --color-surface-container-high: #e9e8e5;
+  --color-surface-container-highest: #e3e2e0;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #1a1c1a;
+  --color-on-surface-variant: #444748;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #858383;
+  --color-outline-variant: #c4c7c7;
+  --color-outline: #747878;
+  --color-inverse-on-surface: #f2f1ee;
+  --color-inverse-surface: #2f312f;
+
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+}
+
+:root {
+  --background: #faf9f6;
+  --foreground: #1a1c1a;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar hiding utility if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
