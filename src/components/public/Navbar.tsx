@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { User, Menu, X, Church } from "lucide-react";
 
 const NAV_LINKS = [
@@ -17,7 +17,20 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleScrollToLocation = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = document.getElementById("temui-kami") || document.getElementById("lokasi");
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", "#temui-kami");
+    } else {
+      e.preventDefault();
+      router.push("/#temui-kami");
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-white/10">
@@ -29,10 +42,10 @@ export function Navbar() {
           </div>
           <Link href="/" className="flex flex-col">
             <span className="font-serif text-xl tracking-wide text-on-primary font-medium">
-              GMS CHURCH
+            JCB PERMATA
             </span>
             <span className="text-[10px] tracking-[0.2em] text-on-primary-container uppercase font-semibold">
-              Gereja Mawar Sharon
+              Gereja Kasih Anugerah
             </span>
           </Link>
         </div>
@@ -75,12 +88,13 @@ export function Navbar() {
             </button>
           </div>
 
-          <Link
-            href="/ibadah#reservasi"
-            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-surface text-primary text-[12px] font-semibold uppercase tracking-widest transition-transform hover:-translate-y-0.5 hover:bg-surface-container-lowest shadow-md"
+          <a
+            href="#temui-kami"
+            onClick={handleScrollToLocation}
+            className="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-surface text-primary text-[12px] font-semibold uppercase tracking-widest transition-transform hover:-translate-y-0.5 hover:bg-surface-container-lowest shadow-md cursor-pointer"
           >
             TEMUKAN GEREJA
-          </Link>
+          </a>
 
           <Link
             href="/admin"
@@ -130,13 +144,16 @@ export function Navbar() {
             })}
           </nav>
           <div className="pt-2 flex flex-col gap-3">
-            <Link
-              href="/ibadah#reservasi"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3 rounded-full bg-surface text-primary text-xs font-semibold uppercase tracking-widest shadow-md"
+            <a
+              href="#temui-kami"
+              onClick={(e) => {
+                setMobileMenuOpen(false);
+                handleScrollToLocation(e);
+              }}
+              className="w-full text-center py-3 rounded-full bg-surface text-primary text-xs font-semibold uppercase tracking-widest shadow-md cursor-pointer block"
             >
-              Temukan Gereja & Ibadah
-            </Link>
+              Temukan Gereja &amp; Ibadah
+            </a>
           </div>
         </div>
       )}

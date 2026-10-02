@@ -46,9 +46,6 @@ export default function PelayananPage() {
       {/* Hero Section */}
       <section className="w-full bg-primary text-on-primary py-20 px-6 lg:px-12">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-secondary-fixed">
-            PANGGILAN MELAYANI • VOLUNTEER GMS
-          </span>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight">
             Menemukan Tempat Terbaik untuk Mempersembahkan Talenta Anda
           </h1>

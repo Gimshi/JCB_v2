@@ -15,8 +15,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Gereja Mawar Sharon • Apostolic & Prophetic Generation",
-  description: "Gereja yang hidup, relevan, dinamis, dan berakar teguh di dalam kuasa Firman serta hadirat Roh Kudus.",
+  title: "Gereja Kasih Anugerah JCB Permata • Kasih Karunia & Kebenaran",
+  description: "Website resmi Gereja Kasih Anugerah JCB Permata. Menjangkau jiwa, memuridkan, dan bertumbuh bersama dalam hadirat Tuhan.",
 };
 
 export default function RootLayout({
