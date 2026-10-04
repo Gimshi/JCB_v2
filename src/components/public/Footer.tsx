@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Church, Phone, Mail, ArrowUpRight, ArrowRight, Play, Radio, Share2, MapPin, Clock, Navigation } from "lucide-react";
+import { Church, Phone, Mail, ArrowUpRight, ArrowRight, MapPin, Clock, Navigation } from "lucide-react";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export function Footer() {
   return (
@@ -207,29 +208,28 @@ export function Footer() {
           <p className="text-[11px] tracking-wider text-on-surface-variant uppercase">
             &copy; {new Date().getFullYear()} Gereja Kasih Anugerah JCB Permata. Hak cipta dilindungi undang-undang.
           </p>
-          <div className="flex items-center space-x-4 text-on-surface-variant">
+          <div className="flex items-center gap-3 text-on-surface-variant">
+            {/* Instagram Button */}
             <a
-              href="https://youtube.com"
+              href="https://www.instagram.com/jcbpermata"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high"
-              title="YouTube"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high hover:text-primary transition-colors text-xs font-semibold"
+              title="Instagram"
             >
-              <Play className="w-4 h-4" />
+              <FaInstagram className="w-4 h-4" />
+              Instagram
             </a>
+            {/* Facebook Button */}
             <a
-              href="#"
-              className="hover:text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high"
-              title="Podcast"
+              href="https://www.facebook.com/p/Jcb-Permata-100070236055222/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high hover:text-primary transition-colors text-xs font-semibold"
+              title="Facebook"
             >
-              <Radio className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
-              className="hover:text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high"
-              title="Share"
-            >
-              <Share2 className="w-4 h-4" />
+              <FaFacebook className="w-4 h-4" />
+              Facebook
             </a>
           </div>
         </div>
