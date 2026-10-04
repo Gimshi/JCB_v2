@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
+  // Paksa Next.js mengompilasi react-icons saat static export
+  transpilePackages: ["react-icons"],
 };
 
 export default nextConfig;
-
